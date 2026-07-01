@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinGuard compliance Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Top Status Telemetry Bar -->
+        <div class="telemetry-bar">
+            <div class="system-status">
+                <span>SYSTEM: <span class="accent-cyan">FINGUARD CORE 2.0</span></span>
+                <span class="status-indicator">
+                    <span id="connection-dot" class="dot disconnected"></span>
+                    <span id="connection-text" class="status-text disconnected-text">SOCKET_DISCONNECTED</span>
+                </span>
+            </div>
+            <div class="telemetry-meta">
+                <span>COMPLIANCE SCREENING RADAR</span>
+                <span>HACKATHON 2026</span>
+            </div>
+        </div>
+
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i data-lucide="shield-alert" class="pulse-icon"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>FIN&bull;GUARD</h1>
+                    <span class="sub-brand">Real-Time Anti-Money Laundering & Graph Analyzer</span>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Network Nodes</span>
+                    <span class="stat-value" id="stat-nodes">
+                        <i data-lucide="network" class="icon-cyan"></i> 0
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Active Alerts (10m)</span>
+                    <span class="stat-value text-red" id="stat-alerts">
+                        <i data-lucide="alert-triangle"></i> 0
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Loops Isolated</span>
+                    <span class="stat-value text-fuchsia" id="stat-loops">
+                        <i data-lucide="layers"></i> 0
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Mean Risk Index</span>
+                    <span class="stat-value text-cyan" id="stat-risk">
+                        <i data-lucide="trending-up"></i> 0%
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Workspace -->
+        <main class="workspace-grid">
+            
+            <!-- Left Sidebar: Controls & Inspector -->
+            <div class="workspace-col col-sidebar">
+                
+                <!-- Simulator Control Deck -->
+                <div class="card p-4 space-y-4">
+                    <h2 class="section-title">
+                        <i data-lucide="bot" class="icon-cyan"></i> Simulator Controller
+                    </h2>
+                    
+                    <div class="control-actions">
+                        <button id="btn-toggle-feed" class="btn btn-emerald flex-1">
+                            <i data-lucide="play"></i> Run Feed
+                        </button>
+                        <button id="btn-reset" class="btn btn-slate" title="Reset Database & Re-fit AI Model">
+                            <i data-lucide="refresh-cw"></i>
+                        </button>
+                    </div>
+
+                    <div class="injections-area pt-3 border-t">
+                        <span class="label-small block mb-2">Targeted Fraud Injections</span>
+                        
+                        <button id="btn-inject-layering" class="btn btn-rose-outline w-full mb-2">
+                            <span>Inject Circular Loop</span>
+                            <span class="badge badge-rose">MULE CHAIN</span>
+                        </button>
+
+                        <button id="btn-inject-structuring" class="btn btn-fuchsia-outline w-full">
+                            <span>Inject Structuring (Smurf)</span>
+                            <span class="badge badge-fuchsia">MULTI-SENDER</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AML Diagnostic Inspector -->
+                <div class="card p-4 flex-1 flex flex-col min-h-inspector">
+                    <h2 class="section-title border-b pb-2">
+                        <i data-lucide="cpu" class="icon-rose"></i> AML Diagnostic Inspector
+                    </h2>
+
+                    <!-- Fallback placeholder -->
+                    <div id="inspector-placeholder" class="flex-1 flex flex-col items-center justify-center text-center p-4">
+                        <i data-lucide="database" class="icon-huge text-slate-700"></i>
+                        <span class="label-muted uppercase block mt-2">No Selection</span>
+                        <p class="desc-muted">Click on any account circle or connection vector inside the graph viewport to run forensics.</p>
+                    </div>
+
+                    <!-- Forensic Inspector Panel (Hidden by default) -->
+                    <div id="inspector-content" class="space-y-4 hidden">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Column: Graph Viewport -->
+            <div class="workspace-col col-graph">
+                <div id="graph-container" class="graph-card">
+                    <div class="graph-header">
+                        <span class="graph-title uppercase">Live Ingestion Graph</span>
+                        <span class="graph-subtitle">Scroll to zoom &bull; Drag background to pan &bull; Drag nodes to pin</span>
+                    </div>
+                    <button id="btn-reset-layout" class="btn btn-slate btn-small btn-layout-reset">
+                        Reset Network Layout
+                    </button>
+                    
+                    <!-- Graph Fallback loader -->
+                    <div id="graph-loader" class="graph-loader">
+                        <div class="spinner"></div>
+                        <p class="loader-text">Listening for active ledger transfers...</p>
+                        <p class="loader-subtext">Start the simulation feed or inject traffic to populate the network.</p>
+                    </div>
+
+                    <canvas id="graph-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Column: Ledger Logs -->
+            <div class="workspace-col col-ledger">
+                
+                <!-- Compliance Alerts -->
+                <div class="card p-4 space-y-3 flex-half flex flex-col">
+                    <h2 class="section-title text-rose">
+                        <i data-lucide="alert-triangle" class="bounce-icon"></i> High-Risk Alerts Feed
+                    </h2>
+                    <div id="alerts-feed" class="scroll-container alerts-list flex-1">
+                        <div class="empty-state">No Anomalies Flagged</div>
+                    </div>
+                </div>
+
+                <!-- Screening Ledger -->
+                <div class="card p-4 space-y-3 flex-half flex flex-col">
+                    <h2 class="section-title border-t pt-3">
+                        <i data-lucide="activity" class="icon-cyan"></i> Real-Time Screening Ledger
+                    </h2>
+                    <div id="ledger-feed" class="scroll-container ledger-list flex-1 font-mono">
+                        <div class="empty-state font-sans">Ledger Empty</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

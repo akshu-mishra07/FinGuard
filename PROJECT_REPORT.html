@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinGuard Project Report & Forensic Compliance Docs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #0f172a;
+            --accent: #ef4444;
+            --accent-bg: #fef2f2;
+            --accent-border: #fca5a5;
+            --secondary: #0ea5e9;
+            --text-main: #334155;
+            --text-heading: #0f172a;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .badge-red {
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            font-weight: 800;
+            font-size: 11px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        h1 {
+            font-family: var(--font-title);
+            font-weight: 900;
+            color: var(--text-heading);
+            font-size: 32px;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--text-heading);
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-heading);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Alert Panel styling similar to github warnings */
+        .alert {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent);
+            border-top: 1px solid var(--accent-border);
+            border-right: 1px solid var(--accent-border);
+            border-bottom: 1px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .alert-title {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: #991b1b;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .alert-body {
+            font-size: 13px;
+            color: #7f1d1d;
+            margin: 0;
+        }
+
+        /* Data structures and Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: var(--bg-light);
+            font-weight: 750;
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--text-heading);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Code Block styling */
+        pre {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: var(--font-code);
+            font-size: 12.5px;
+            color: #0f172a;
+        }
+
+        /* SVG flow chart or structure */
+        .chart-box {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .chart-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer and metadata */
+        footer {
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Section -->
+        <header>
+            <div class="logo-area">
+                <span class="badge-red">FinGuard Core</span>
+                <h1>FIN&bull;GUARD PROJECT REPORT</h1>
+            </div>
+            <p class="subtitle">Anti-Money Laundering (AML) & Transaction Fraud Graph Analyzer</p>
+        </header>
+
+        <!-- Section 1: Executive Summary -->
+        <section>
+            <h2>1. Executive Summary</h2>
+            <p>
+                FinGuard is a state-of-the-art transaction screening and structural money laundering detection platform. Standard rule-based triggers flag basic transaction limits but remain blind to complex multi-account layering networks (mule loops) where money is funneled through intermediaries to hide illicit origins. 
+            </p>
+            <p>
+                The platform addresses this capability gap by combining concurrent transaction buffering with an AI ensemble of deep learning neural networks (PyTorch Autoencoders) and statistical partitioning (Isolation Forests), coupled with an in-memory graph analyzer for directed cycle paths.
+            </p>
+            
+            <div class="alert">
+                <div class="alert-title">🔍 Major Detection Milestone</div>
+                <p class="alert-body">
+                    During E2E pipeline verification tests, the system successfully isolated a 4-hop circular money laundering loop (ACC_MULE_002 &rarr; ACC_MULE_007 &rarr; ACC_MULE_003 &rarr; ACC_MULE_005 &rarr; ACC_MULE_002) in real-time, instantly escalating the transfer risk score to 100% and caching the anomalous profiles in MongoDB.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Architecture & Technology Stack -->
+        <section class="page-break">
+            <h2>2. Architecture & Technology Stack</h2>
+            <p>
+                FinGuard is designed for modularity, scalability, and sub-millisecond screening throughput. The backend is built using FastAPI, running Python's asynchronous tasks, and storing dynamic cache matrices in MongoDB. The frontend compliance dashboard runs on Next.js 16.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Component</th>
+                        <th>Functionality</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI/ML Layer</strong></td>
+                        <td>PyTorch Autoencoder & scikit-learn Isolation Forest</td>
+                        <td>Detects spatial statistical vector shifts in user transaction behavior. Matches reconstruction loss and outlier scores.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Graph Engine</strong></td>
+                        <td>In-memory Directed Cycle Path DFS</td>
+                        <td>Traces transaction linkages dynamically within a 10-minute rolling window to detect loops and structuring paths.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend API</strong></td>
+                        <td>FastAPI & Asyncio Ingestion Queue</td>
+                        <td>Concurrently reads transfer requests, coordinates screening threads, and manages WebSockets telemetry broadcast.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database</strong></td>
+                        <td>MongoDB (Motor Driver)</td>
+                        <td>Stores polymorphic transacting parameters and caches rolling user velocity matrices dynamically.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UI Client</strong></td>
+                        <td>Next.js 16 & HTML5 Canvas Physics Graph</td>
+                        <td>Draws real-time force-directed node linkages. Flagged transfers glow in red vector lines with moving particles.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 3: AI Screening Layer -->
+        <section>
+            <h2>3. AI Screening Layer</h2>
+            <p>
+                When a transaction is screened, the system builds an 8-dimensional feature vector:
+                <code>[amount, velocity_1m, velocity_10m, freq_1m, freq_10m, out_degree, in_degree, loop_involvement]</code>.
+            </p>
+            <h3>PyTorch Spatial Autoencoder</h3>
+            <p>
+                The PyTorch neural network maps the feature vector to a lower-dimensional bottleneck latent space, then reconstructs it. The reconstruction loss is evaluated using Mean Squared Error (MSE):
+            </p>
+            <div style="text-align: center; margin: 15px 0; font-weight: 600;">
+                \(L_{\text{MSE}}(x, \hat{x}) = \frac{1}{d} \sum_{i=1}^{d} (x_i - \hat{x}_i)^2\)
+            </div>
+            <p>
+                A high reconstruction loss indicates that the transaction features do not match normal behavioral distributions, indicating a spatial statistical vector shift.
+            </p>
+
+            <h3>Isolation Forest Integration</h3>
+            <p>
+                In parallel, the scikit-learn Isolation Forest evaluates the transaction. The decision function calculates isolation path lengths: anomalies are isolated near the root of the trees.
+            </p>
+            <p>
+                The final risk score combines both models:
+                $$\text{Risk Score} = \max(\text{Autoencoder Risk}, \text{Isolation Forest Risk})$$
+            </p>
+        </section>
+
+        <!-- Section 4: Graph Topology & Loop Isolation -->
+        <section class="page-break">
+            <h2>4. Graph Topology & Loop Isolation</h2>
+            <p>
+                A primary laundering tactic (layering) routes funds in circular chains to conceal source funds. FinGuard maintains a directed graph of transactions in a rolling 10-minute window. When a transfer from $S \rightarrow R$ occurs, the Graph Analyzer runs a Depth-First Search (DFS) to see if there is already a path from $R \rightarrow S$:
+            </p>
+            <pre><code>def dfs(node, target):
+    if node == target:
+        path.append(node)
+        return True
+    if node in visited:
+        return False
+    visited.add(node)
+    path.append(node)
+    for neighbor in adj_list[node]:
+        if dfs(neighbor, target):
+            return True
+    path.pop()
+    return False</code></pre>
+            <p>
+                If a path exists, adding the transfer completes the loop. The system flags the loop, extracts the path, and signals the Next.js client via WebSocket to draw glowing red vectors and cashflow path animations.
+            </p>
+        </section>
+
+        <!-- Section 5: Verification & E2E Logs -->
+        <section>
+            <h2>5. Verification & E2E Logs</h2>
+            <p>
+                Below is the output of the integration flow test verify script executing the full streaming loop detection pipeline:
+            </p>
+            <pre><code>--- 1. Resetting FinGuard System ---
+Reset response: {'status': 'reset', 'message': 'Database cleared and AI models recalibrated.'}
+
+--- 2. Checking Initial Graph (Should be empty) ---
+Initial nodes: 0, Initial edges: 0
+
+--- 3. Starting Background Transaction Simulator ---
+Simulator started: {'status': 'active', 'message': 'Transaction simulator started.'}
+
+--- 4. Checking Mid-stream Graph ---
+Mid-stream nodes: 6, Mid-stream edges: 3
+
+--- 5. Injecting Circular Money Laundering Loop ($15,000) ---
+Injection status: {'status': 'injecting', 'message': 'Circular layering loop injection initiated.'}
+
+--- 6. Fetching High-Risk Alerts Feed ---
+Total alerts flagged: 8
+
+🎉 SUCCESS: Circular Money Laundering Loop detected and isolated!
+Alert Details:
+  - Sender: ACC_MULE_002
+  - Receiver: ACC_MULE_007
+  - Risk Score: 100%
+  - Isolated Cycle Path: ['ACC_MULE_002', 'ACC_MULE_007', 'ACC_MULE_003', 'ACC_MULE_005', 'ACC_MULE_002']</code></pre>
+        </section>
+
+        <!-- Section 6: Launch & Deployment -->
+        <section>
+            <h2>6. Launch & Deployment</h2>
+            <p>
+                The repository is fully updated and pushed to your GitHub. Follow these steps to run the platform locally:
+            </p>
+            <pre><code># 1. Clone the project and install monorepo dependencies
+npm install
+
+# 2. Start both the FastAPI backend and Next.js frontend concurrently
+npm run dev:finguard
+
+# 3. Open your browser and navigate to:
+http://localhost:3000/finguard</code></pre>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <span>&copy; 2026 FinGuard Platform</span>
+            <span>Confidential Compliance Document</span>
+            <span>akshu-mishra07/FinGuard</span>
+        </footer>
+
+    </div>
+
+    <!-- MathJax for rendering LaTeX math formatting -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
